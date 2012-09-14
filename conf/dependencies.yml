@@ -1,0 +1,19 @@
+# Application dependencies
+
+require:
+    - play
+    - org.eclipse.xtend -> org.eclipse.xtend.standalone 2.3.1
+    - provided -> crud 1.2.5
+    - provided -> secure 1.2.5
+
+repositories:
+    - xtend:
+        type: iBiblio
+        root: "http://build.eclipse.org/common/xtend/maven/"
+        contains:
+            - org.eclipse.xtend -> *
+    - provided:
+        type: local
+        artifact: "${application.path}/jar/[module]-[revision].jar"
+        contains:
+            - provided -> *
