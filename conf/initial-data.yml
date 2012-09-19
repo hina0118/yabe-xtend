@@ -1,41 +1,41 @@
 # Test data
 
 User(bob):
-    _email:         bob@gmail.com
-    _password:      secret
-    _fullname:      Bob
-    _isAdmin:       true
+    email:          bob@gmail.com
+    password:       secret
+    fullname:       Bob
+    isAdmin:        true
     
 User(jeff):
-    _email:         jeff@gmail.com
-    _password:      secret
-    _fullname:      Jeff    
+    email:          jeff@gmail.com
+    password:       secret
+    fullname:       Jeff    
     
 User(paul):
-    _email:         paul@gmail.com
-    _password:      secret
-    _fullname:      Paul    
+    email:          paul@gmail.com
+    password:       secret
+    fullname:       Paul    
     
 Tag(play):
-    _name:          Play
+    name:           Play
     
 Tag(architecture):
-    _name:          Architecture
+    name:           Architecture
     
 Tag(test):
-    _name:          Test
+    name:           Test
     
 Tag(mvc):
-    _name:          MVC    
+    name:           MVC    
     
 Post(firstBobPost):
-    _title:         About the model layer
-    _postedAt:      2009-06-14
+    title:          About the model layer
+    postedAt:       2009-06-14
     author:         bob
     tags:           
                     - play
                     - architecture
-    _content:       >
+    content:        >
                     The model has a central position in a Play! application. It is the domain-specific 
                     representation of the information on which the application operates.
                      
@@ -47,23 +47,23 @@ Post(firstBobPost):
                     delegated to the infrastructure. This layer is the heart of business software.
 
 Post(secondBobPost):
-    _title:         Just a test of YABE
-    _postedAt:      2009-03-25
+    title:          Just a test of YABE
+    postedAt:       2009-03-25
     author:         bob
     tags:           
                     - test
-    _content:       >
+    content:        >
                     Well, it's just a test.
                     
 Post(jeffPost):
-    _title:         The MVC application
-    _postedAt:      2009-06-06
+    title:          The MVC application
+    postedAt:       2009-06-06
     author:         jeff
     tags:           
                     - play
                     - architecture
                     - mvc
-    _content:       >
+    content:        >
                     A Play! application follows the MVC architectural pattern as applied to the 
                     architecture of the Web.
                      
@@ -72,22 +72,22 @@ Post(jeffPost):
                     View and a Controller layer.
                     
 Comment(c1):
-    _author:        Guest
-    _content:       >
+    author:         Guest
+    content:        >
                     You are right !
-    _postedAt:      2009-06-14
-    _post:          firstBobPost
+    postedAt:       2009-06-14
+    post:           firstBobPost
     
 Comment(c2):
-    _author:        Mike
-    _content:       >
+    author:         Mike
+    content:        >
                     I knew that ...
-    _postedAt:      2009-06-15
-    _post:          firstBobPost    
+    postedAt:       2009-06-15
+    post:           firstBobPost    
     
 Comment(c3):
-    _author:        Tom
-    _content:       >
+    author:         Tom
+    content:        >
                     This post is useless ?
-    _postedAt:      2009-04-05
-    _post:          secondBobPost    
+    postedAt:       2009-04-05
+    post:           secondBobPost    

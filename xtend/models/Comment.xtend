@@ -11,20 +11,16 @@ import java.util.Date
 @Entity
 class Comment extends Model {
 	@Required
-	@Property
-	String author
+	public String author
 	@Required
-	@Property
-	Date postedAt
+	public Date postedAt
 	@Required
 	@Lob
 	@MaxSize(10000)
-	@Property
-	String content
+	public String content
 	@Required
 	@ManyToOne
-	@Property
-	Post post
+	public Post post
 	
 	new(Post post, String author, String content) {
         this.post = post

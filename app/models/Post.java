@@ -25,85 +25,37 @@ import play.db.jpa.Model;
 @SuppressWarnings("all")
 public class Post extends Model {
   @Required
-  private String _title;
-  
-  public String getTitle() {
-    return this._title;
-  }
-  
-  public void setTitle(final String title) {
-    this._title = title;
-  }
+  public String title;
   
   @Required
   @As(value = "yyyy-MM-dd")
-  private Date _postedAt;
-  
-  public Date getPostedAt() {
-    return this._postedAt;
-  }
-  
-  public void setPostedAt(final Date postedAt) {
-    this._postedAt = postedAt;
-  }
+  public Date postedAt;
   
   @Required
   @Lob
   @MaxSize(value = 10000)
-  private String _content;
-  
-  public String getContent() {
-    return this._content;
-  }
-  
-  public void setContent(final String content) {
-    this._content = content;
-  }
+  public String content;
   
   @Required
   @ManyToOne
-  private User _author;
+  public User author;
   
-  public User getAuthor() {
-    return this._author;
-  }
-  
-  public void setAuthor(final User author) {
-    this._author = author;
-  }
-  
-  @OneToMany(mappedBy = "_post", cascade = CascadeType.ALL)
-  private List<Comment> _comments;
-  
-  public List<Comment> getComments() {
-    return this._comments;
-  }
-  
-  public void setComments(final List<Comment> comments) {
-    this._comments = comments;
-  }
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+  public List<Comment> comments;
   
   @ManyToMany(cascade = CascadeType.PERSIST)
-  private Set<Tag> _tags;
-  
-  public Set<Tag> getTags() {
-    return this._tags;
-  }
-  
-  public void setTags(final Set<Tag> tags) {
-    this._tags = tags;
-  }
+  public Set<Tag> tags;
   
   public Post(final User author, final String title, final String content) {
     ArrayList<Comment> _arrayList = new ArrayList<Comment>();
-    this.setComments(_arrayList);
+    this.comments = _arrayList;
     TreeSet<Tag> _treeSet = new TreeSet<Tag>();
-    this.setTags(_treeSet);
-    this.setAuthor(author);
-    this.setTitle(title);
-    this.setContent(content);
+    this.tags = _treeSet;
+    this.author = author;
+    this.title = title;
+    this.content = content;
     Date _date = new Date();
-    this.setPostedAt(_date);
+    this.postedAt = _date;
   }
   
   public Post addComment(final String author, final String content) {
@@ -111,8 +63,7 @@ public class Post extends Model {
     {
       Comment _comment = new Comment(this, author, content);
       final Comment newComment = _comment;
-      List<Comment> _comments = this.getComments();
-      _comments.add(newComment);
+      this.comments.add(newComment);
       Post _save = this.<Post>save();
       _xblockexpression = (_save);
     }
@@ -120,15 +71,13 @@ public class Post extends Model {
   }
   
   public Post previous() {
-    Date _postedAt = this.getPostedAt();
-    JPAQuery _find = Post.find("postedAt < ?1 order by postedAt desc", _postedAt);
+    JPAQuery _find = Post.find("postedAt < ?1 order by postedAt desc", this.postedAt);
     Post _first = _find.<Post>first();
     return _first;
   }
   
   public Post next() {
-    Date _postedAt = this.getPostedAt();
-    JPAQuery _find = Post.find("postedAt > ?1 order by postedAt asc", _postedAt);
+    JPAQuery _find = Post.find("postedAt > ?1 order by postedAt asc", this.postedAt);
     Post _first = _find.<Post>first();
     return _first;
   }
@@ -136,9 +85,8 @@ public class Post extends Model {
   public Post tagItWith(final String name) {
     Post _xblockexpression = null;
     {
-      Set<Tag> _tags = this.getTags();
       Tag _findOrCreateByName = Tag.findOrCreateByName(name);
-      _tags.add(_findOrCreateByName);
+      this.tags.add(_findOrCreateByName);
       _xblockexpression = (this);
     }
     return _xblockexpression;
@@ -160,7 +108,6 @@ public class Post extends Model {
   }
   
   public String toString() {
-    String _title = this.getTitle();
-    return _title;
+    return this.title;
   }
 }

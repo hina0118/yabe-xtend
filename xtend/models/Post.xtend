@@ -20,27 +20,21 @@ import static javax.persistence.CascadeType.*
 @Entity
 class Post extends Model {
 	@Required
-	@Property
-	String title
+	public String title
 	@Required
 	@As("yyyy-MM-dd")
-	@Property
-	Date postedAt
+	public Date postedAt
 	@Required
 	@Lob
 	@MaxSize(10000)
-	@Property
-	String content
+	public String content
 	@Required
 	@ManyToOne
-	@Property
-	User author
-	@OneToMany(mappedBy="_post", cascade=ALL)
-	@Property
-	List<Comment> comments
+	public User author
+	@OneToMany(mappedBy="post", cascade=ALL)
+	public List<Comment> comments
 	@ManyToMany(cascade=PERSIST)
-	@Property
-	Set<Tag> tags
+	public Set<Tag> tags
 	
 	new(User author, String title, String content) {
 		this.comments = new ArrayList<Comment>

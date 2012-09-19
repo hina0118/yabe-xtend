@@ -8,8 +8,7 @@ import java.util.Map
 @Entity
 class Tag extends Model implements Comparable<Tag> {
 	@Required
-    @Property
-	String name
+	public String name
 	
 	private new(String name) {
 		this.name = name

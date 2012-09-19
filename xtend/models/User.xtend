@@ -9,15 +9,11 @@ import javax.persistence.Entity
 class User extends Model {
 	@Email
 	@Required
-	@Property
-	String email
+	public String email
 	@Required
-	@Property
-	String password
-	@Property
-	String fullname
-	@Property
-	boolean isAdmin
+	public String password
+	public String fullname
+	public boolean isAdmin
 	
 	new(String email, String password, String fullname) {
 		this.email = email

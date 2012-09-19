@@ -12,18 +12,10 @@ import play.db.jpa.Model;
 @SuppressWarnings("all")
 public class Tag extends Model implements Comparable<Tag> {
   @Required
-  private String _name;
-  
-  public String getName() {
-    return this._name;
-  }
-  
-  public void setName(final String name) {
-    this._name = name;
-  }
+  public String name;
   
   private Tag(final String name) {
-    this.setName(name);
+    this.name = name;
   }
   
   public static Tag findOrCreateByName(final String name) {
@@ -51,14 +43,11 @@ public class Tag extends Model implements Comparable<Tag> {
   }
   
   public int compareTo(final Tag otherTag) {
-    String _name = this.getName();
-    String _name_1 = otherTag.getName();
-    int _compareTo = _name.compareTo(_name_1);
+    int _compareTo = this.name.compareTo(otherTag.name);
     return _compareTo;
   }
   
   public String toString() {
-    String _name = this.getName();
-    return _name;
+    return this.name;
   }
 }

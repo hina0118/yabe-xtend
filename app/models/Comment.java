@@ -13,73 +13,38 @@ import play.db.jpa.Model;
 @SuppressWarnings("all")
 public class Comment extends Model {
   @Required
-  private String _author;
-  
-  public String getAuthor() {
-    return this._author;
-  }
-  
-  public void setAuthor(final String author) {
-    this._author = author;
-  }
+  public String author;
   
   @Required
-  private Date _postedAt;
-  
-  public Date getPostedAt() {
-    return this._postedAt;
-  }
-  
-  public void setPostedAt(final Date postedAt) {
-    this._postedAt = postedAt;
-  }
+  public Date postedAt;
   
   @Required
   @Lob
   @MaxSize(value = 10000)
-  private String _content;
-  
-  public String getContent() {
-    return this._content;
-  }
-  
-  public void setContent(final String content) {
-    this._content = content;
-  }
+  public String content;
   
   @Required
   @ManyToOne
-  private Post _post;
-  
-  public Post getPost() {
-    return this._post;
-  }
-  
-  public void setPost(final Post post) {
-    this._post = post;
-  }
+  public Post post;
   
   public Comment(final Post post, final String author, final String content) {
-    this.setPost(post);
-    this.setAuthor(author);
-    this.setContent(content);
+    this.post = post;
+    this.author = author;
+    this.content = content;
     Date _date = new Date();
-    this.setPostedAt(_date);
+    this.postedAt = _date;
   }
   
   public String toString() {
     String _xifexpression = null;
-    String _content = this.getContent();
-    int _length = _content.length();
+    int _length = this.content.length();
     boolean _greaterThan = (_length > 50);
     if (_greaterThan) {
-      String _content_1 = this.getContent();
-      String _substring = _content_1.substring(0, 50);
+      String _substring = this.content.substring(0, 50);
       String _plus = (_substring + "...");
       _xifexpression = _plus;
     } else {
-      String _content_2 = this.getContent();
-      _xifexpression = _content_2;
+      _xifexpression = this.content;
     }
     return _xifexpression;
   }

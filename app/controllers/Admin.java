@@ -15,7 +15,7 @@ public class Admin extends Controller {
     static void setConnectedUser() {
         if(Security.isConnected()) {
             User user = User.find("byEmail", Security.connected()).first();
-            renderArgs.put("user", user.getFullname());
+            renderArgs.put("user", user.fullname);
         }
     }
  
@@ -41,14 +41,14 @@ public class Admin extends Controller {
         } else {
             // Retrieve post
             post = Post.findById(id);
-            post.setTitle(title);
-            post.setContent(content);
-            post.getTags().clear();
+            post.title = title;
+            post.content = content;
+            post.tags.clear();
         }
         // Set tags list
         for(String tag : tags.split("\\s+")) {
             if(tag.trim().length() > 0) {
-                post.getTags().add(Tag.findOrCreateByName(tag));
+                post.tags.add(Tag.findOrCreateByName(tag));
             }
         }
         // Validate
